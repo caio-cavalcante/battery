@@ -1,4 +1,4 @@
-import java.util.Scanner; // implementar para o usuário informar minutos de uso e carregamento
+import java.util.Scanner; // implementação para o usuário informar minutos de uso e carregamento
 
 public class Battery {
     public static int getBattery(int[] eventos) {
@@ -8,9 +8,9 @@ public class Battery {
             bateria += evento;
 
             if (bateria > 100) {
-                bateria = 100;
+                bateria = 100; // limite superior
             } else if (bateria < 0) {
-                bateria = 0;
+                bateria = 0; // limite inferior
             }
         }
 
@@ -18,9 +18,23 @@ public class Battery {
     }
 
     public static void main(String[] args) {
-        int[] eventos = {10, -20, 61, -15};
-        int result = getBattery(eventos);
+        Scanner scan = new Scanner(System.in);
 
-        System.out.println("Porcentagem final da bateria: " + result + "%");
+        System.out.println("Quantos eventos?");
+        int n = scan.nextInt();
+        int[] eventos = new int[n];
+
+        System.out.println("Você vai informar quantos minutos de uso (-) ou carregamento (+)");
+        for (int i = 0; i < n; i++) {
+            System.out.println(i+1 + "º evento: ");
+            eventos[i] = scan.nextInt();
+        }
+
+        for (int i = 0; i < n; i++) { // conferência dos valores no array de eventos
+            System.out.print(eventos[i] + " ");
+        }
+
+        int result = getBattery(eventos);
+        System.out.println("\nPorcentagem final da bateria: " + result + "%");
     }
 }
